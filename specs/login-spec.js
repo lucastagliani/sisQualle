@@ -1,4 +1,4 @@
-﻿// spec.js
+﻿// login-spec.js
 
 describe('Bot Designer', function() {
 	var url = 'https://platform-hlg.zenvia360.com/signin';
@@ -11,7 +11,7 @@ describe('Bot Designer', function() {
 		expect(browser.getTitle()).toEqual('Zenvia Conversational Cloud');
 	});
 	
-	it ('shouldnt login with wrong password', function() {
+	it ('should not login with wrong password', function() {
 		browser.get(url)
 		
 		element(by.id('signin-email')).sendKeys(email);
@@ -21,13 +21,11 @@ describe('Bot Designer', function() {
 		expect($('.is-danger').getText()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
 	
-	it ('try recovery password with invalid email address', function() {
+	it ('should not recovery password of invalid email', function() {
 		browser.get(url)
 		
 		element(by.className('is-outbound')).click();
-		
 		element(by.name('email')).sendKeys('invalid.invalid@invalid.com');
-		
 		element(by.className('is-primary')).click();
 		
 		expect($('.is-danger').getText()).toContain('Conta não encontrada para o e-mail abaixo.');
