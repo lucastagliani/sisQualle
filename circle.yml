@@ -10,7 +10,7 @@ dependencies:
         - npm install
         - webdriver-manager update
         - webdriver-manager start:
-            backgroud: true
+            background: true
         - sudo apt-get update
         - curl -l -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         - sudo dpkg -i google-chrome.deb
