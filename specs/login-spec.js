@@ -32,6 +32,12 @@ describe('Bot Designer', function() {
 		expect($('.is-danger').getText()).toContain('Conta não encontrada para o e-mail abaixo.');
 	});
 	
+	it('should not access without email and password empty', function() {
+		browser.get(url);
+		element(by.id('btn-signin')).click();
+		expect($('.is-danger').getText()).toContain('E-mail e senha não podem estarem vazios.');
+	});
+	
 	// it ('create new account', function() {
 		// browser.get(url);
 		// element(by.className('btn btnRounded menuItem likeButton trackThis')).click();
