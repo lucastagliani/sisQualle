@@ -7,6 +7,6 @@ exports.config = {
 		browserName: 'chrome',
 		chromeOptions: {
 			args: [ "--headless", "--disable-gpu", "--windows-size=800,600", "--lang=pt"]
-		}
+		} 
 	}
 }
