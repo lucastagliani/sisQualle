@@ -1,6 +1,6 @@
 var url = 'https://platform-hlg.zenvia360.com/signin';
 var email = 'lucas.tagliani@zenvia.com';
-var pass = 'LTA_2300';
+var pass = ${PASSWORD};
 
 module.exports.url = url;
 module.exports.email = email;
