@@ -1,6 +1,6 @@
 // login-spec.js
 var access = require('./../access.js');
-browser.waitForAngularEnabled(false);
+
 
 describe('Bot Designer', function() {
 	var url = access.url;
@@ -9,7 +9,7 @@ describe('Bot Designer', function() {
 	var wrongPass = 'wrongPass';
 	
 	it('should access login page', function() {
-		browser.get(url);
+		browser.get(url, 20000);
 		expect(browser.getTitle()).toEqual('Zenvia Conversational Cloud');
 	});
 	
