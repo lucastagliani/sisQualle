@@ -1,5 +1,6 @@
 // login-spec.js
 var access = require('./../access.js');
+browser.waitForAngularEnabled(false);
 
 describe('Bot Designer', function() {
 	var url = access.url;
