@@ -1,42 +1,97 @@
-// login-spec.js
 var access = require('./../access.js');
 
-describe('Bot Designer', function() {
-	var url = access.url;
-	var email = access.email;
+// login-spec.js
+describe('Página de Login', function() {
+	var url = access.baseUrl;
+	var correctLogin = access.email;
 	var correctPass = access.pass;
+	var wrongLogin = 'wrong@login.com'
 	var wrongPass = 'wrongPass';
 	
-	it('should access login page', function() {
+	it('1. Página está acessível', function() {
 		browser.get(url);
 		expect(browser.getTitle()).toEqual('Zenvia Conversational Cloud');
 	});
 	
-	it ('should not login with wrong password', function() {
+	it ('2. Não deve acessar sem login nem senha', function() {
+		browser.get(url)
+		element(by.id('btn-signin')).click();
+		
+		expect($('.is-danger').getText()).toContain('E-mail e senha não podem estarem vazios.');
+	});
+	
+	it ('3. Não deve acessar acessar com login correto mas sem senha', function() {
 		browser.get(url)
 		
-		element(by.id('signin-email')).sendKeys(email);
+		element(by.id('signin-email')).sendKeys(correctLogin);
+		element(by.id('btn-signin')).click();
+		
+		expect($('.is-danger').getText()).toContain('E-mail e senha não podem estarem vazios.');
+	});
+	
+	it ('4. Não deve acessar acessar sem login mas com senha correta', function() {
+		browser.get(url)
+		
+		element(by.id('signin-password')).sendKeys(correctPass);
+		element(by.id('btn-signin')).click();
+		
+		expect($('.is-danger').getText()).toContain('E-mail e senha não podem estarem vazios.');
+	});
+	
+	it ('5. Não deve acessar acessar com login e senha incorretos', function() {
+		browser.get(url)
+		
+		element(by.id('signin-email')).sendKeys(wrongLogin);
 		element(by.id('signin-password')).sendKeys(wrongPass);
 		element(by.id('btn-signin')).click();
 		
 		expect($('.is-danger').getText()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
 	
-	it ('should not recovery password of invalid email', function() {
+	it ('6. Não deve acessar acessar com login correto e senha incorreta', function() {
 		browser.get(url)
 		
-		element(by.className('is-outbound')).click();
-		element(by.name('email')).sendKeys('invalid.invalid@invalid.com');
-		element(by.className('is-primary')).click();
+		element(by.id('signin-email')).sendKeys(correctLogin);
+		element(by.id('signin-password')).sendKeys(wrongPass);
+		element(by.id('btn-signin')).click();
 		
-		expect($('.is-danger').getText()).toContain('Conta não encontrada para o e-mail abaixo.');
+		expect($('.is-danger').getText()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
 	
-	it('should not access without email and password empty', function() {
-		browser.get(url);
+	it ('7. Não deve acessar acessar com login incorreto e senha correta', function() {
+		browser.get(url)
+		
+		element(by.id('signin-email')).sendKeys(wrongLogin);
+		element(by.id('signin-password')).sendKeys(correctPass);
 		element(by.id('btn-signin')).click();
-		expect($('.is-danger').getText()).toContain('E-mail e senha não podem estarem vazios.');
+		
+		expect($('.is-danger').getText()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
+	
+	it ('8. Deve acessar com login e senha corretos', function() {
+		browser.get(url)
+		
+		element(by.id('signin-email')).sendKeys(correctLogin);
+		element(by.id('signin-password')).sendKeys(correctPass);
+		element(by.id('btn-signin')).click();
+		
+		expect($('.section h1').getText()).toContain('Painel de controle');
+	});
+	
+	
+	
+	
+	
+	
+	// it ('Não deve recuperar senha de e-mail não cadastrado', function() {
+		// browser.get(url)
+		
+		// element(by.className('is-outbound')).click();
+		// element(by.name('email')).sendKeys('invalid.invalid@invalid.com');
+		// element(by.className('is-primary')).click();
+		
+		// expect($('.is-danger').getText()).toContain('Conta não encontrada para o e-mail abaixo.');
+	// });
 	
 	// it ('create new account', function() {
 		// browser.get(url);
@@ -53,37 +108,36 @@ describe('Bot Designer', function() {
 		// // element(by.className('hs-button primary large')).click();
 	// });
 	
-	it ('create new bot', function() {
-		browser.get(url)
+	// it ('Criar chatbot simples', function() {
+		// browser.get(url)
 		
-		element(by.id('signin-email')).sendKeys(email);
-		element(by.id('signin-password')).sendKeys(correctPass);
-		element(by.id('btn-signin')).click();
-	
-	
-		element(by.id('btnBots')).click();
+		// element(by.id('signin-email')).sendKeys(email);
+		// element(by.id('signin-password')).sendKeys(correctPass);
+		// element(by.id('btn-signin')).click();
 		
-		expect($('h1').getText()).toEqual('Meus chatbots');
+		// element(by.id('btnBots')).click();
 		
-		element(by.css('a[routerlink="/home/workflow/new"]')).click();
-		expect($('h1').getText()).toEqual('Novo chatbot');
+		// expect($('h1').getText()).toEqual('Meus chatbots');
 		
-		element(by.css('h6')).click();
+		// element(by.css('a[routerlink="/home/workflow/new"]')).click();
+		// expect($('h1').getText()).toEqual('Novo chatbot');
 		
-		element(by.name('workflowname')).sendKeys('Meu bot automático');
-		// element(by.css('button[type="submit"]')).click();
+		// element(by.css('h6')).click();
 		
-		// // not working yet
-		// browser.actions()
-			// .mouseMove(element(by.css('canvas')))
-			// .mouseMove({x: 600, y: 100})
-			// .doubleClick()
-			// .perform();
+		// element(by.name('workflowname')).sendKeys('Meu bot automático');
+		// // element(by.css('button[type="submit"]')).click();
+		
+		// // // not working yet
+		// // browser.actions()
+			// // .mouseMove(element(by.css('canvas')))
+			// // .mouseMove({x: 600, y: 100})
+			// // .doubleClick()
+			// // .perform();
 			
-		// expect(element(by.css('canvas')).getText()).toEqual('This text is displayed if your browser does not support the Canvas HTML element.');		
+		// // expect(element(by.css('canvas')).getText()).toEqual('This text is displayed if your browser does not support the Canvas HTML element.');		
 		
-		// browser.sleep(100000);
-	});
+		// // browser.sleep(100000);
+	// });
 	
 	// POSSÍVEIS PRÓXIMOS PASSOS:
 	
