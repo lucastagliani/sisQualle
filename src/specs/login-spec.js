@@ -1,12 +1,12 @@
 'use strict';
 var PaginaLogin = require('../pages/PaginaLogin.js');
-var Access = require('./../access.js');
+var access = require('./../access.js');
 
 describe('Cenários de testes na PaginaLogin: ', function() {
 	var page;
 	
-	var correctLogin = Access.email;
-	var correctPass = Access.pass;
+	var correctLogin = access.email;
+	var correctPass = access.pass;
 	
 	var wrongLogin = 'wrong@login.com'
 	var wrongPass = 'wrongPass';
@@ -51,12 +51,7 @@ describe('Cenários de testes na PaginaLogin: ', function() {
 	});
 	
 	it ('8. Deve acessar com login e senha corretos', function() {
-		page.login(correctLogin, correctPass);
-		expect($('.section h1').getText()).toContain('Painel de controle');
+		var paginaInicial = page.validLogin();
+		expect(paginaInicial.estaLogado()).toBe(true);
 	});
-	
-	// it ('9. Deve retornar página inicial com login e senha corretos', function() {
-		// var paginaInicial = page.validLogin();
-		// expect(paginaInicial.estaLogado()).toBe(true);
-	// });
 });

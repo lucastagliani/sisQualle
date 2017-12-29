@@ -1,4 +1,4 @@
-var Access = require('./../access.js');
+var Access = require('./../../access.js');
 var PaginaRecuperaSenha = require('../pages/PaginaRecuperaSenha.js');
 // recover-spec.js
 describe('Página de recuperar senha', function() {
