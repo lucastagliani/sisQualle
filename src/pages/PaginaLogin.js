@@ -1,5 +1,5 @@
 'use strict';
-var PaginaInicial = require('./paginaInicial.js');
+var PaginaInicial = require('../pages/PaginaInicial.js');
 
 var access = require('./../access.js');
 var utils = require('../utils.js');

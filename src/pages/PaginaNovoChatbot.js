@@ -1,7 +1,7 @@
 'use strict'
 
 var PaginaLogin = require('../pages/PaginaLogin.js');
-var PaginaInicial = require('./paginaInicial.js');
+var PaginaInicial = require('../pages/PaginaInicial.js');
 
 var access = require('./../access.js');
 var utils = require('../utils.js');
