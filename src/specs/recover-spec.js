@@ -27,9 +27,14 @@ describe('Página de recuperar senha', function() {
 		expect(page.failMessage()).toContain('ERRORS.UserNotFoundError');
 	});
 	
-	// it('4. Deve recuperar senha de e-mail cadastrado.', function() {
-		// page.recoverEmail(correctLogin);
-		// expect(page.failMessage()).toContain('');
-	// });
+	it('4. Deve recuperar senha de e-mail cadastrado.', function() {
+		page.recoverEmail(correctLogin);
+		expect(page.successMessage()).toContain('Um e-mail foi enviado.');
+	});
+	
+	it('5. Deve retornar para a tela inicial de login.', function() {
+		page.returnToLoginPage();
+		expect(page.loginPageValidation()).toBe('https://app.zenvia.com/signin');
+	});
 	
 });
