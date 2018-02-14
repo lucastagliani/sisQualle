@@ -2,11 +2,11 @@
 var Utils = require('../utils.js');
 
 var HomePage = function () {
-  var mainTitle = $('.section h1');
+  var mainTitleSelector = $('.section h1');
 
   this.isAuthenticated = function () {
-    browser.wait(Utils.until.presenceOf(mainTitle), Utils.timeout);
-    return mainTitle.isPresent();
+    browser.wait(Utils.until.presenceOf(mainTitleSelector), Utils.timeout);
+    return mainTitleSelector.isPresent();
   }
 }
 

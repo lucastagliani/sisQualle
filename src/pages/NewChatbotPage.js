@@ -8,23 +8,23 @@ var Utils = require('../utils.js');
 
 var NewChatbotPage = function () {
 
-  var btnCreateNew = $('.column.is-3');
-  var btnCreateChatbot = $('[type="submit"]');
-  var chkReceptive = $('[name="receptiveBot"]');
-  var rdbFacebookMessenger = $('#rdbFacebookMessenger');
-  var rdbWebChat = $('#rdbWebChat');
-  var firstOption = $('option:enabled');
+  var btnCreateNewSelector = $('.column.is-3');
+  var btnCreateChatbotSelector = $('[type="submit"]');
+  var chkReceptiveSelector = $('[name="receptiveBot"]');
+  var rdbFacebookMessengerSelector = $('#rdbFacebookMessenger');
+  var rdbWebChatSelector = $('#rdbWebChat');
+  var firstOptionSelector = $('option:enabled');
 
-  var mainTitle = $('.section h1');
-  var modalTitle = $('newbot section h1');
+  var mainTitleSelector = $('.section h1');
+  var modalTitleSelector = $('newbot section h1');
 
-  var nameInput = $('#chatbotName');
-  var descriptionInput = $('#chatbotDescription');
+  var nameInputSelector = $('#chatbotName');
+  var descriptionInputSelector = $('#chatbotDescription');
   
-  var chatbotTitle = $('.subtitle.is-4');
-  var jsonEditor = $('.jsoneditor-outer');
+  var chatbotTitleSelector = $('.subtitle.is-4');
+  var jsonEditorSelector = $('.jsoneditor-outer');
 
-  var errorMessage = $('.is-danger');
+  var errorMessageSelector = $('.is-danger');
 
   var pageLogin = new LoginPage();
   var homePage;
@@ -47,63 +47,63 @@ var NewChatbotPage = function () {
   // Actions
 
   this.openModal = function () {
-    browser.wait(Utils.until.presenceOf(btnCreateNew), Utils.timeout, 'O elemento btnCreateNew demorou muito para aparecer!');
-    btnCreateNew.click();
+    browser.wait(Utils.until.presenceOf(btnCreateNewSelector), Utils.timeout, 'O elemento btnCreateNew demorou muito para aparecer!');
+    btnCreateNewSelector.click();
   }
 
   this.createNewChatbot = function (nome, descricao) {
-    nameInput.sendKeys(nome)
-    descriptionInput.sendKeys(descricao);
-    btnCreateChatbot.click();
+    nameInputSelector.sendKeys(nome)
+    descriptionInputSelector.sendKeys(descricao);
+    btnCreateChatbotSelector.click();
   }
 
   this.selectReceptive = function () {
-    browser.wait(Utils.until.presenceOf(chkReceptive), Utils.timeout, 'O elemento chkReceptive demorou muito para aparecer!');
-    chkReceptive.click();
+    browser.wait(Utils.until.presenceOf(chkReceptiveSelector), Utils.timeout, 'O elemento chkReceptive demorou muito para aparecer!');
+    chkReceptiveSelector.click();
   }
 
   this.selectFacebookChannel = function () {
-    browser.wait(Utils.until.presenceOf(rdbFacebookMessenger), Utils.timeout, 'O elemento rdbFacebookMessenger demorou muito para aparecer!');
-    rdbFacebookMessenger.click();
+    browser.wait(Utils.until.presenceOf(rdbFacebookMessengerSelector), Utils.timeout, 'O elemento rdbFacebookMessenger demorou muito para aparecer!');
+    rdbFacebookMessengerSelector.click();
   }
 
   this.selectChatChannel = function () {
-    browser.wait(Utils.until.presenceOf(rdbWebChat), Utils.timeout, 'O elemento rdbWebChat demorou muito para aparecer!');
-    rdbWebChat.click();
+    browser.wait(Utils.until.presenceOf(rdbWebChatSelector), Utils.timeout, 'O elemento rdbWebChat demorou muito para aparecer!');
+    rdbWebChatSelector.click();
   }
 
   this.selectFirstFacebookPage = function () {
-    browser.wait(Utils.until.presenceOf(firstOption), Utils.timeout, 'O elemento firstOption demorou muito para aparecer!');
-    firstOption.click();
-    return firstOption.getText();
+    browser.wait(Utils.until.presenceOf(firstOptionSelector), Utils.timeout, 'O elemento firstOption demorou muito para aparecer!');
+    firstOptionSelector.click();
+    return firstOptionSelector.getAttribute('value');
   }
 
   this.selectFirstChatRoom = function () {
-    browser.wait(Utils.until.presenceOf(firstOption), Utils.timeout, 'O elemento firstOption demorou muito para aparecer!');
-    firstOption.click();
-    return firstOption.getAttribute('value');
+    browser.wait(Utils.until.presenceOf(firstOptionSelector), Utils.timeout, 'O elemento firstOption demorou muito para aparecer!');
+    firstOptionSelector.click();
+    return firstOptionSelector.getAttribute('value');
   }
 
   // Text
 
   this.failMessage = function () {
-    browser.wait(Utils.until.presenceOf(errorMessage), Utils.timeout, 'O elemento errorMessage demorou muito para aparecer!');
-    return errorMessage.getText();
+    browser.wait(Utils.until.presenceOf(errorMessageSelector), Utils.timeout, 'O elemento errorMessage demorou muito para aparecer!');
+    return errorMessageSelector.getText();
   }
 
   this.modalTitleText = function () {
-    browser.wait(Utils.until.presenceOf(modalTitle), Utils.timeout, 'O elemento modalTitle demorou muito para aparecer!');
-    return modalTitle.getText();
+    browser.wait(Utils.until.presenceOf(modalTitleSelector), Utils.timeout, 'O elemento modalTitle demorou muito para aparecer!');
+    return modalTitleSelector.getText();
   }
 
   this.chatbotTitleText = function () {
-    browser.wait(Utils.until.presenceOf(chatbotTitle), Utils.timeout, 'O elemento chatbotTitle demorou muito para aparecer!');
-    return chatbotTitle.getText();
+    browser.wait(Utils.until.presenceOf(chatbotTitleSelector), Utils.timeout, 'O elemento chatbotTitle demorou muito para aparecer!');
+    return chatbotTitleSelector.getText();
   }
 
   this.jsonEditorContent = function () {
-    browser.wait(Utils.until.presenceOf(jsonEditor), Utils.timeout, 'O elemento jsonEditor demorou muito para aparecer!');
-    return jsonEditor.getAttribute("textContent");
+    browser.wait(Utils.until.presenceOf(jsonEditorSelector), Utils.timeout, 'O elemento jsonEditor demorou muito para aparecer!');
+    return jsonEditorSelector.getAttribute("textContent");
   }
 };
 

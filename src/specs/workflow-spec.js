@@ -13,8 +13,13 @@ describe('D) Suite case of WorkflowPage:', function () {
     });
 
     it('1. Deleta workflow', function () {
-        page.deleteWorkflowByIndex(3);
-        page.deleteWorkflowByIndex(4);
+        page.deleteWorkflowCreatedByTest();
+
+
+        // for (var index = 0; index < 10; index++) {
+        //     page.get();
+        //     page.deleteFirstWorkflow();
+        // }
     });
 });
 

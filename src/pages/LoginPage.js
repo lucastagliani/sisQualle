@@ -5,10 +5,10 @@ var Access = require('./../access.js');
 var Utils = require('../utils.js');
 
 var LoginPage = function () {
-  var loginButton = $('#btn-signin');
-  var emailInput = $('#signin-email');
-  var passwordInput = $('#signin-password');
-  var errorMessage = $('.is-danger');
+  var loginButtonSelector = $('#btn-signin');
+  var emailInputSelector = $('#signin-email');
+  var passwordInputSelector = $('#signin-password');
+  var errorMessageSelector = $('.is-danger');
 
   this.get = function () {
     browser.waitForAngularEnabled(false);
@@ -16,11 +16,11 @@ var LoginPage = function () {
   }
 
   this.getEmailInput = function () {
-    return emailInput;
+    return emailInputSelector;
   }
 
   this.getPasswordInput = function () {
-    return passwordInput;
+    return passwordInputSelector;
   }
 
   this.login = function (email, password) {
@@ -28,21 +28,21 @@ var LoginPage = function () {
     //  Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
     //  Expected 'ERRORS.undefined' to contain 'Opa! A combinação de e-mail e senha não é válida.'.
     browser.sleep(1000);
-    emailInput.sendKeys(email)
-    passwordInput.sendKeys(password);
-    loginButton.click();
+    emailInputSelector.sendKeys(email)
+    passwordInputSelector.sendKeys(password);
+    loginButtonSelector.click();
   }
 
   this.validLogin = function () {
-    emailInput.sendKeys(Access.email)
-    passwordInput.sendKeys(Access.pass);
-    loginButton.click();
+    emailInputSelector.sendKeys(Access.email)
+    passwordInputSelector.sendKeys(Access.pass);
+    loginButtonSelector.click();
     return new HomePage();
   }
 
   this.failMessage = function () {
-    browser.wait(Utils.until.presenceOf(errorMessage), Utils.timeout, 'O elemento errorMessage demorou muito para aparecer!');
-    return errorMessage.getText();
+    browser.wait(Utils.until.presenceOf(errorMessageSelector), Utils.timeout, 'O elemento errorMessage demorou muito para aparecer!');
+    return errorMessageSelector.getText();
   }
 }
 

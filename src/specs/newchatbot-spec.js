@@ -55,7 +55,7 @@ describe('C) Suite case of NewChatbotPage:', function () {
   });
 
   it('7. Não deve criar o chatbot receptivo de facebook sem página escolhida.', function () {
-    var chatbotName = '[AUTOTEST] RECEPTIVO FACEBOOK';
+    var chatbotName = '[AUTOTEST] RECEPTIVO FB';
     var chatbotDescription = 'Descrição do meu chatbot';
     page.openModal();
     page.selectReceptive();
@@ -66,7 +66,7 @@ describe('C) Suite case of NewChatbotPage:', function () {
   });
 
   it('8. Deve criar o chatbot receptivo de facebook com página escolhida.', function () {
-    var chatbotName = '[AUTOTEST] RECEPTIVO FACEBOOK';
+    var chatbotName = '[AUTOTEST] RECEPTIVO FB';
     var chatbotDescription = 'Descrição do meu chatbot';
     page.openModal();
     page.selectReceptive();

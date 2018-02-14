@@ -4,11 +4,11 @@
 var Utils = require('../utils.js');
 
 var RecoveryPasswordPage = function () {
-  var loginButton = element(by.className('button is-primary is-fatty'));
-  var emailInput = element(by.name('email'));
-  var errorMessage = $('.is-danger');
-  var successMessage = $('.is-success');
-  var loginPage = element(by.className('text-uppercase text-bold'));
+  var loginButtonSelector = element(by.className('button is-primary is-fatty'));
+  var emailInputSelector = element(by.name('email'));
+  var errorMessageSelector = $('.is-danger');
+  var successMessageSelector = $('.is-success');
+  var loginPageSelector = element(by.className('text-uppercase text-bold'));
 
   this.get = function () {
     browser.waitForAngularEnabled(false);
@@ -16,22 +16,22 @@ var RecoveryPasswordPage = function () {
   }
 
   this.recoverEmail = function (email) {
-    emailInput.sendKeys(email);
-    loginButton.click();
+    emailInputSelector.sendKeys(email);
+    loginButtonSelector.click();
   }
 
   this.returnToLoginPage = function () {
-    loginPage.click();
+    loginPageSelector.click();
   }
 
   this.failMessage = function () {
-    browser.wait(Utils.until.presenceOf(errorMessage), Utils.timeout, 'O elemento errorMessage demorou muito para aparecer!');
-    return errorMessage.getText();
+    browser.wait(Utils.until.presenceOf(errorMessageSelector), Utils.timeout, 'O elemento errorMessage demorou muito para aparecer!');
+    return errorMessageSelector.getText();
   }
 
   this.successMessage = function () {
-    browser.wait(Utils.until.presenceOf(successMessage), Utils.timeout, 'O elemento successMessage demorou muito para aparecer!');
-    return successMessage.getText();
+    browser.wait(Utils.until.presenceOf(successMessageSelector), Utils.timeout, 'O elemento successMessage demorou muito para aparecer!');
+    return successMessageSelector.getText();
   }
 
   this.loginPageValidation = function () {
