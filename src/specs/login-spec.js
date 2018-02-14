@@ -1,18 +1,18 @@
 'use strict';
-var PaginaLogin = require('../pages/PaginaLogin.js');
-var access = require('./../access.js');
+var LoginPage = require('../pages/LoginPage.js');
+var Access = require('./../access.js');
 
-describe('Cenários de testes na PaginaLogin: ', function() {
+describe('A) Suite case of LoginPage: ', function() {
 	var page;
 	
-	var correctLogin = access.email;
-	var correctPass = access.pass;
+	var correctLogin = Access.email;
+	var correctPass = Access.pass;
 	
 	var wrongLogin = 'wrong@login.com'
 	var wrongPass = 'wrongPass';
 
 	beforeEach(function(){
-		page = new PaginaLogin();
+		page = new LoginPage();
 		page.get();
 	});
 	
@@ -25,33 +25,33 @@ describe('Cenários de testes na PaginaLogin: ', function() {
 		expect(page.failMessage()).toContain('E-mail e senha não podem estarem vazios.');
 	});
 	
-	it ('3. Não deve acessar acessar com login correto mas sem senha', function() {
+	it ('3. Não deve acessar com login correto mas sem senha', function() {
 		page.login(correctLogin, '');
 		expect(page.failMessage()).toContain('E-mail e senha não podem estarem vazios.');
 	});
 	
-	it ('4. Não deve acessar acessar sem login mas com senha correta', function() {
+	it ('4. Não deve acessar sem login mas com senha correta', function() {
 		page.login('', correctPass);
 		expect(page.failMessage()).toContain('E-mail e senha não podem estarem vazios.');
 	});
 	
-	it ('5. Não deve acessar acessar com login e senha incorretos', function() {
+	it ('5. Não deve acessar com login e senha incorretos', function() {
 		page.login(wrongLogin, wrongPass);
 		expect(page.failMessage()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
 	
-	it ('6. Não deve acessar acessar com login correto e senha incorreta', function() {
+	it ('6. Não deve acessar com login correto e senha incorreta', function() {
 		page.login(correctLogin, wrongPass);
 		expect(page.failMessage()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
 	
-	it ('7. Não deve acessar acessar com login incorreto e senha correta', function() {
+	it ('7. Não deve acessar com login incorreto e senha correta', function() {
 		page.login(wrongLogin, correctPass);		
 		expect(page.failMessage()).toContain('Opa! A combinação de e-mail e senha não é válida.');
 	});
 	
 	it ('8. Deve acessar com login e senha corretos', function() {
-		var paginaInicial = page.validLogin();
-		expect(paginaInicial.estaLogado()).toBe(true);
+		var homePage = page.validLogin();
+		expect(homePage.isAuthenticated()).toBe(true);
 	});
 });
